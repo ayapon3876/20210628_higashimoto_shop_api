@@ -39,3 +39,6 @@ Route::post('/detall', [DetallController::class, 'post']);
 Route::post('/done', [DoneController::class, 'post']);
 Route::post('/reservation', [ReservationController::class, 'post']);
 Route::delete('/reservation', [ReservationController::class, 'delete']);
+Route::get('/demo-url',  function (Request $request) {
+  return response()->json(['Laravel 8 CORS Demo']);
+});

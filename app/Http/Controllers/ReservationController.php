@@ -14,7 +14,6 @@ class ReservationController extends Controller
         $param = [
             "user_id" => $request->user_id,
             "shop_id" => $request->shop_id,
-            "shop_deteil" => $request->shop_deteil,
             "created_at" => $now,
             "updated_at" => $now
         ];
@@ -26,7 +25,7 @@ class ReservationController extends Controller
     }
     public function delete(Request $request)
     {
-        DB::table('reservations')->where('shop_id', $request->shop_id)->where('user_id', $request->user_id)->where('shop_deteil', $request->shop_deteil)->delete();
+        DB::table('reservations')->where('shop_id', $request->shop_id)->where('user_id', $request->user_id)->delete();
         return response()->json([
             'message' => 'Reservation deleted successfully',
         ], 200);

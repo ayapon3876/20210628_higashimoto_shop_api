@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Shop;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ShopController extends Controller
 {
@@ -14,7 +15,11 @@ class ShopController extends Controller
      */
     public function index()
     {
-        //
+        $items = Shop::all();
+        return response()->json([
+            'message' => 'OK',
+            'data' => $items
+        ], 200);
     }
 
     /**
@@ -25,10 +30,19 @@ class ShopController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $item = new Shop;
+        $item->user_id = $request->user_name;
+        $item->shop_name = $request->shop_name;
+        $item->category = $request->category;
+        $item->area = $request->area;
+        $item->save();
+        return response()->json([
+            'message' => 'Shop created successfully',
+            'data' => $item
+        ], 200);
     }
 
-    /**
+    /** 
      * Display the specified resource.
      *
      * @param  \App\Models\Shop  $shop
